@@ -71,18 +71,14 @@ public final class RollingNumbersView: UIView {
         rollingDirection: RollingDirection? = nil,
         completion: (() -> Void)? = nil
     ) {
-        self.invalidateDisplayLink()
         self.presentedHeight = 0
         self.number = double
         
         prepareColumns(rollingDirection: rollingDirection)
-        prepareDisplayLink()
 
         updateColumns(
             animationType: animationType,
             completion: { [weak self] in
-                self?.invalidateDisplayLink()
-                self?.generateHapticIfNeeded()
                 self?.digitsCompletion?()
                 completion?()
             }
@@ -133,7 +129,6 @@ public final class RollingNumbersView: UIView {
     // MARK: - Private
     
     private lazy var currentRollingDirection: RollingDirection = defaultRollingDirection
-    private var displayLink: CADisplayLink?
     private var presentedHeight: Int = 0
     private var isInitialColumnsPrepared: Bool = false
     private var currDigits: [Int] = []
@@ -153,51 +148,6 @@ public final class RollingNumbersView: UIView {
     private func setupCommon() {
         clipsToBounds = true
     }
-
-    private func prepareDisplayLink() {
-        guard digitsCompletion != nil || generateFeedbackStyle != nil else { return }
-        self.displayLink = CADisplayLink(target: self, selector: #selector(animationDidUpdate))
-        displayLink?.add(to: .main, forMode: .default)
-    }
-    
-    private func invalidateDisplayLink() {
-        displayLink?.invalidate()
-        displayLink = nil
-    }
-    
-    private func preparePositionY(_ positionY: CGFloat, columnHeight: CGFloat) -> Int {
-        switch currentRollingDirection {
-        case .up:
-            if isSubtraсted {
-                return abs(Int(positionY - (columnHeight + height)))
-            } else {
-                return abs(Int(positionY - height))
-            }
-        case .down:
-            if isSubtraсted {
-                return Int(positionY + height)
-            } else {
-                return abs(Int(positionY + (columnHeight - height)))
-            }
-        }
-    }
-    
-    @objc private func animationDidUpdate(displayLink: CADisplayLink) {
-                
-        guard let columnLayer = layer.sublayers?.last as? DigitsColumnLayer,
-              let positionY = columnLayer.presentation()?.position.y else { return }
-        
-        let y: Int = preparePositionY(
-            positionY,
-            columnHeight: columnLayer.frame.height / 2
-        )
-        
-        if y >= presentedHeight {
-            generateHapticIfNeeded()
-            digitsCompletion?()
-            presentedHeight += Int(height)
-        }
-    }
     
     private func setForegroundColor(_ color: UIColor, withAnimationDuration duration: CFTimeInterval? = nil) {
         layer.sublayers?
@@ -210,12 +160,6 @@ public final class RollingNumbersView: UIView {
                     columnLayer.setForegroundColor(textColor, withAnimationDuration: duration)
                 }
             })
-    }
-    
-    private func generateHapticIfNeeded() {
-        guard let style = generateFeedbackStyle else { return }
-        let generator = UIImpactFeedbackGenerator(style: style)
-        generator.impactOccurred()
     }
 
     private func prepareText(from number: Double) -> String {
