@@ -71,6 +71,7 @@ public final class RollingNumbersView: UIView {
         rollingDirection: RollingDirection? = nil,
         completion: (() -> Void)? = nil
     ) {
+        self.invalidateDisplayLink()
         self.presentedHeight = 0
         self.number = double
         
@@ -168,7 +169,7 @@ public final class RollingNumbersView: UIView {
         switch currentRollingDirection {
         case .up:
             if isSubtraсted {
-                return abs(Int(positionY - (columnHeight / 2 + height)))
+                return abs(Int(positionY - (columnHeight + height)))
             } else {
                 return abs(Int(positionY - height))
             }
@@ -176,7 +177,7 @@ public final class RollingNumbersView: UIView {
             if isSubtraсted {
                 return Int(positionY + height)
             } else {
-                return abs(Int(positionY + (columnHeight / 2 - height)))
+                return abs(Int(positionY + (columnHeight - height)))
             }
         }
     }
