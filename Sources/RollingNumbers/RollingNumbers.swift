@@ -47,7 +47,6 @@ public final class RollingNumbersView: UIView {
     public var animationType: AnimationType? = .allAfterFirstChangedDigit
     public var rollingDirection: RollingDirection?
     public var alignment: Alignment = .left
-    public var digitsCompletion: (() -> Void)? = nil
     public var generateFeedbackStyle: UIImpactFeedbackGenerator.FeedbackStyle?
     public var characterSpacing: CGFloat = 1
     public var font = UIFont.systemFont(ofSize: 24, weight: .bold)
@@ -78,10 +77,7 @@ public final class RollingNumbersView: UIView {
 
         updateColumns(
             animationType: animationType,
-            completion: { [weak self] in
-                self?.digitsCompletion?()
-                completion?()
-            }
+            completion: completion
         )
     }
 
