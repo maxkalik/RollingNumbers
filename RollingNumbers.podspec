@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RollingNumbers'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'RollingNumbers is a lightweight UIView for getting smooth rolling animation between numbers implemented using only CALayer.'
   s.homepage         = 'https://github.com/maxkalik/RollingNumbers'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
