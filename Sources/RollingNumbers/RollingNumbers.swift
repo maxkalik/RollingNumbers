@@ -25,10 +25,22 @@ public final class RollingNumbersView: UIView {
     }
     
     public struct AnimationConfiguration {
-        public var duration: CFTimeInterval = 1
-        public var speed: Float = 0.3
-        public var damping: CGFloat = 17
-        public var initialVelocity: CGFloat = 1
+        public var duration: CFTimeInterval
+        public var speed: Float
+        public var damping: CGFloat
+        public var initialVelocity: CGFloat
+        
+        public init(
+            duration: CFTimeInterval = 1,
+            speed: Float = 0.3,
+            damping: CGFloat = 17,
+            initialVelocity: CGFloat = 1
+        ) {
+            self.duration = duration
+            self.speed = speed
+            self.damping = damping
+            self.initialVelocity = initialVelocity
+        }
     }
     
     public var animationConfiguration: AnimationConfiguration = AnimationConfiguration()
