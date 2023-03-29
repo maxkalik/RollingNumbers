@@ -120,7 +120,7 @@ Be welcome to contribute to this project!
 
 ## License
 
-This project was released under the [MIT]() license.
+This project was released under the [MIT](https://github.com/maxkalik/RollingNumbers/blob/master/LICENSE) license.
 
 ## Author
 
