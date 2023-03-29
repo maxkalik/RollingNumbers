@@ -77,6 +77,10 @@ var rollingNumbersView = {
     // UIFont
     view.font = .systemFont(ofSize: 48, weight: .medium)
     
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .currency
+    view.formatter = formatter
+    
     return view
 }()
 
@@ -91,6 +95,22 @@ var rollingNumbersView = {
 | `allAfterFirstChangedNumber` | All numbers roll after first changed number     |
 | `noAnimation`                | Numbers change without animation                |
 
+
+### Animation Direction
+
+| Type   | Description                                 |
+| ----   | ------------------------------------------- |
+| `up`   | Rolling animation direction from up to down |
+| `down` | Rolling animation direction from down to up |
+
+### Specific Configureation
+
+Set text color with animation with optional transition duration between existing color and the next one.
+
+```swift
+rollingNumbersView.setTextColor(.blue, withAnimationDuration: 3)
+```
+
 ### Animation Configuration
 
 ```swift
@@ -102,16 +122,14 @@ rollingNumbersView.animationConfiguration = RollingNumbersView.AnimationConfigur
 )
 ```
 
-### Number Formatter
+### Completion
+
+Use completion for each numbers animation
 
 ```swift
-let formatter = NumberFormatter()
-formatter.numberStyle = .currency
-formatter.usesGroupingSeparator = true
-formatter.locale = Locale(identifier: "en_US")
-formatter.maximumFractionDigits = 2
-formatter.minimumFractionDigits = 0
-rollingNumbersView.formatter = formatter
+rollingNumbersView.setNumberWithAnimation(245699) {
+    // completion
+}
 ```
 
 ## Contributing
