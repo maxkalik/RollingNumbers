@@ -3,7 +3,6 @@
 [![Version](https://img.shields.io/cocoapods/v/RollingNumbers.svg?style=flat)](https://cocoapods.org/pods/RollingNumbers)
 [![License](https://img.shields.io/cocoapods/l/RollingNumbers.svg?style=flat)](https://cocoapods.org/pods/RollingNumbers)
 [![Platform](https://img.shields.io/cocoapods/p/RollingNumbers.svg?style=flat)](https://cocoapods.org/pods/RollingNumbers)
-[![Swift](https://img.shields.io/cocoapods/s/RollingNumbers.svg?style=flat)](https://cocoapods.org/pods/RollingNumbers)
 
 RollingNumbers is a lightweight UIView for getting smooth rolling animation between numbers implemented using only CALayer. 
 
@@ -77,6 +76,8 @@ var rollingNumbersView = {
     
     // UIFont
     view.font = .systemFont(ofSize: 48, weight: .medium)
+    
+    return view
 }()
 
 ```
@@ -84,14 +85,12 @@ var rollingNumbersView = {
 ### Animation Configuration
 
 ```swift
-view.animationConfiguration = RollingNumbersView.AnimationConfiguration(
+rollingNumbersView.animationConfiguration = RollingNumbersView.AnimationConfiguration(
     duration: 3,
     speed: 0.3,
     damping: 17,
     initialVelocity: 1
 )
-
-return view
 ```
 
 ### Number Formatter
