@@ -82,6 +82,15 @@ var rollingNumbersView = {
 
 ```
 
+### Animation Type
+
+| Type                         | Description                                     |
+| ---------------------------- | ----------------------------------------------- |
+| `allNumbers`                 | All numbers roll if even only one number change |
+| `onlyChangedNumbers`         | Only changed numbers roll                       |
+| `allAfterFirstChangedNumber` | All numbers roll after first changed number     |
+| `noAnimation`                | Numbers change without animation                |
+
 ### Animation Configuration
 
 ```swift
