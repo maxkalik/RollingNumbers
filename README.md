@@ -6,7 +6,7 @@
 
 RollingNumbers is a lightweight UIView for getting smooth rolling animation between numbers implemented using only CALayer. 
 
-![WeahterLogger App Icon](RollingNumbersExample.gif)
+![RollingNumbers](RollingNumbersExample.gif)
 
 In [Triumph Arcade](https://github.com/triumpharcade) building [Triumph SDK](https://github.com/triumpharcade/triumph-sdk-ios) for game developers. I had a task to create Rolling Numbers animation for a balance component. Sometimes we cannot afford to use third-party libraries, so I decided to make my own solution using only `CALayers` in purpose to avoid performance issues.
 
