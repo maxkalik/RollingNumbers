@@ -185,10 +185,8 @@ public final class RollingNumbersView: UIView {
     public override func layoutSubviews() {
         super.layoutSubviews()
         
-        if !isInitialColumnsPrepared {
-            prepareColumns()
-            isInitialColumnsPrepared = true
-        }
+        prepareColumns()
+        isInitialColumnsPrepared = true
     }
     
     required init?(coder: NSCoder) {
