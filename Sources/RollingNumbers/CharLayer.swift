@@ -38,7 +38,7 @@ final class CharLayer: CATextLayer {
         alignmentMode = .center
         isWrapped = true
 
-        // It’s perfect for objects that animate around the screen but don’t change in appearance
-        shouldRasterize = true
+        shouldRasterize = false
+		contentsScale = UIScreen.main.scale
     }
 }
