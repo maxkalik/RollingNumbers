@@ -181,14 +181,19 @@ public final class RollingNumbersView: UIView {
     public var height: CGFloat {
         frame.height
     }
-    
+	
     public override func layoutSubviews() {
         super.layoutSubviews()
+		
+		if bounds != lastBounds {
+			isInitialColumnsPrepared = false
+			lastBounds = bounds
+		}
         
-        if !isInitialColumnsPrepared {
-            prepareColumns()
-            isInitialColumnsPrepared = true
-        }
+		if !isInitialColumnsPrepared {
+			prepareColumns()
+			isInitialColumnsPrepared = true
+		}
     }
     
     required init?(coder: NSCoder) {
@@ -203,6 +208,7 @@ public final class RollingNumbersView: UIView {
     private var currDigits: [Int] = []
     private var prevDigits: [Int] = []
     private var isSubtraсted: Bool = false
+	private var lastBounds: CGRect = .zero
 
     private(set) var number: Double {
         didSet(prev) {
